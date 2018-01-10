@@ -1,0 +1,24 @@
+    Connector of Postgresql
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Following Tutorial：
+    http://www.psycopg.org/psycopg/docs/usage.html
+
+    Preparation on Postgresql Server:
+
+    (1)Create database and connect user
+    sudo -s -u postgres
+    psql
+    CREATE DATABASE test;
+    CREATE USER visitor WITH PASSWORD 'visitor';
+    GRANT ALL PRIVILEGES ON DATABASE test to visitor;
+
+    (2)Set ip and restart Postgresql
+
+    vim /home/hbase/pgsql/data/postgresql.conf
+    (Find and change this line to allow db server listen to request from any hosts)
+        listen_addresses = '*'
+    vim /home/hbase/pgsql/data/pg_hba.conf
+    (Add this line to allow any hosts to visit server)
+        host all all 0.0.0.0/0 md5
+
+    Don't forget to restart PostgreSql.
